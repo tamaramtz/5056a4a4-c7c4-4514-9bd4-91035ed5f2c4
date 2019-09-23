@@ -26,3 +26,6 @@ class Main(object):
         fig = amortization.get_plot()
         if save:
             fig.savefig(save)
+
+if __name__ == "__main__":
+    fire.Fire(Main)
