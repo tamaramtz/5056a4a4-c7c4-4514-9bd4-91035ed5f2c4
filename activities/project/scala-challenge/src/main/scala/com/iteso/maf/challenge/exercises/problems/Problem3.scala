@@ -27,18 +27,29 @@ case object Problem3 extends Problem {
 
   val solution: Route = path("3") {
 
-    get {
-      parameters('size.as[Int]) {
-        size => {
-          // <---- Your code starts here. --->
-
-          val challengeResponse: String = ???
-          // <---- Your code ends  here. ---->
-          htmlResponse(challengeResponse)
-        }
+    get {parameters('size.as[Int]) {size => {
+      // <---- Your code starts here. --->
+      val number = size
+      def pascal(c: Int, r: Int): Int = {
+        if (c == 0 || c == r) 1
+        else
+          pascal(c - 1, r - 1) + pascal(c, r - 1)
       }
+      var list_of_pascal_triangle = List[String]()
+      for (row <- 0 to number) {
+        var list_of_row_numbers = List[String]()
+        for (col <- 0 to row)
+          list_of_row_numbers = pascal(col, row).toString.reverse :: list_of_row_numbers
+        val string_of_row = list_of_row_numbers.mkString(" ")
+        list_of_pascal_triangle = ">br<" + string_of_row  :: list_of_pascal_triangle
+      }
+      val string_of_pascal_triangle = list_of_pascal_triangle.mkString("")
+      val result = string_of_pascal_triangle.reverse.dropRight(4)
+      val challengeResponse: String = result.toString
+      // <---- Your code ends  here. ---->
+      htmlResponse(challengeResponse)
     }
-
+    }
+    }
   }
-
 }
