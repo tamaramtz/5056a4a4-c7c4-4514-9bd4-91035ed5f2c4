@@ -3,11 +3,9 @@
     - Create a branch named "wine"
     - Solve the data-requests from this file using SQL.
     - Add/Commit/Push your changes to github (individual).
- Note: You can work along with your project team.
  */
 
 -- EX.1) Get the top 10 countries with more population density
-
 select name from country where area_km2 =0;
 
 select
